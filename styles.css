@@ -105,7 +105,7 @@ html, body {
   transform: translateX(-50%);
 }
 
-@media (min-width: 1024px) and (orientation: landscape) {
+@media (min-width: 1024px) {
   .arrow-left,
   .arrow-right {
     display: flex;
@@ -116,7 +116,7 @@ html, body {
   }
 }
 
-@media (max-width: 1023px), (orientation: portrait) {
+@media (max-width: 1023px) {
   .gallery {
     height: 100dvh;
   }
