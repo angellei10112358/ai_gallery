@@ -35,9 +35,16 @@ const slides = gallery.querySelectorAll('.slide');
 slides[0].classList.add('active');
 slides[0].style.opacity = '1';
 
-function isHorizontal() {
-  return window.innerWidth >= 1024 && window.innerHeight < window.innerWidth;
+function updateLayout() {
+  document.body.classList.toggle('desktop', window.matchMedia('(min-width: 1024px)').matches);
 }
+
+function isHorizontal() {
+  return document.body.classList.contains('desktop');
+}
+
+window.addEventListener('resize', updateLayout);
+updateLayout();
 
 function goTo(index) {
   if (isAnimating) return;

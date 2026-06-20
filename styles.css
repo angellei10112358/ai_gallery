@@ -105,32 +105,40 @@ html, body {
   transform: translateX(-50%);
 }
 
-@media (min-width: 1024px) {
-  .arrow-left,
-  .arrow-right {
-    display: flex;
-  }
-  .arrow-top,
-  .arrow-bottom {
-    display: none;
-  }
+.gallery {
+  height: 100dvh;
 }
 
-@media (max-width: 1023px) {
-  .gallery {
-    height: 100dvh;
-  }
-  .arrow-left,
-  .arrow-right {
-    display: none;
-  }
-  .arrow-top,
-  .arrow-bottom {
-    display: flex;
-  }
-  .slide {
-    padding: 32px 20px;
-  }
+.arrow-left,
+.arrow-right {
+  display: none;
+}
+
+.arrow-top,
+.arrow-bottom {
+  display: flex;
+}
+
+.slide {
+  padding: 32px 20px;
+}
+
+body.desktop .gallery {
+  height: 100vh;
+}
+
+body.desktop .arrow-left,
+body.desktop .arrow-right {
+  display: flex;
+}
+
+body.desktop .arrow-top,
+body.desktop .arrow-bottom {
+  display: none;
+}
+
+body.desktop .slide {
+  padding: 0;
 }
 
 @media (hover: none) and (pointer: coarse) {
