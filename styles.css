@@ -48,14 +48,90 @@ html, body {
   pointer-events: none;
 }
 
+.arrow {
+  position: absolute;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease, background 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.arrow.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.arrow:active {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.arrow-left {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow-right {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow-top {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow-bottom {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media (min-width: 1024px) and (orientation: landscape) {
-  .slide {
-    cursor: pointer;
+  .arrow-left,
+  .arrow-right {
+    display: flex;
+  }
+  .arrow-top,
+  .arrow-bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px), (orientation: portrait) {
+  .arrow-left,
+  .arrow-right {
+    display: none;
+  }
+  .arrow-top,
+  .arrow-bottom {
+    display: flex;
   }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .slide {
-    cursor: default;
+  .arrow {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
   }
 }

@@ -131,3 +131,29 @@ document.addEventListener('keydown', function (e) {
     goTo(currentIndex - 1);
   }
 });
+
+// Arrow hints
+const arrowLeft = document.getElementById('arrowLeft');
+const arrowRight = document.getElementById('arrowRight');
+const arrowTop = document.getElementById('arrowTop');
+const arrowBottom = document.getElementById('arrowBottom');
+const arrows = [arrowLeft, arrowRight, arrowTop, arrowBottom];
+let arrowTimer = null;
+
+function showArrows() {
+  arrows.forEach(a => a.classList.add('show'));
+  clearTimeout(arrowTimer);
+  arrowTimer = setTimeout(() => {
+    arrows.forEach(a => a.classList.remove('show'));
+  }, 3000);
+}
+
+arrowLeft.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex - 1); showArrows(); });
+arrowRight.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex + 1); showArrows(); });
+arrowTop.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex - 1); showArrows(); });
+arrowBottom.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex + 1); showArrows(); });
+
+gallery.addEventListener('mousemove', showArrows);
+gallery.addEventListener('touchstart', showArrows, { passive: true });
+
+showArrows();
