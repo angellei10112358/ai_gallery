@@ -34,29 +34,43 @@ function goTo(index) {
   if (index < 0 || index >= slides.length || index === currentIndex) return;
   isAnimating = true;
 
-  var direction = index > currentIndex ? 1 : -1;
   var current = slides[currentIndex];
   var target = slides[index];
-  var horizontal = isHorizontal();
-  var axis = horizontal ? 'X' : 'Y';
+  var axis = isHorizontal() ? 'X' : 'Y';
 
-  var enterOffset = (direction * 100) + '%';
-  var exitOffset = (-direction * 100) + '%';
+  if (index > currentIndex) {
+    // next: current slides away + fades out, target already at center, just fades in
+    target.style.transition = 'none';
+    target.style.transform = 'translate(0, 0)';
+    target.style.opacity = '0';
+    target.classList.add('active');
 
-  target.style.transition = 'none';
-  target.style.transform = axis === 'X' ? 'translateX(' + enterOffset + ')' : 'translateY(' + enterOffset + ')';
-  target.style.opacity = '0';
-  target.classList.add('active');
+    void target.offsetWidth;
 
-  void target.offsetWidth;
+    current.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    current.style.transform = axis === 'X' ? 'translateX(-100%)' : 'translateY(-100%)';
+    current.style.opacity = '0';
 
-  current.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-  current.style.transform = axis === 'X' ? 'translateX(' + exitOffset + ')' : 'translateY(' + exitOffset + ')';
-  current.style.opacity = '0';
+    target.style.transition = 'opacity 0.5s ease';
+    target.style.transform = 'translate(0, 0)';
+    target.style.opacity = '1';
+  } else {
+    // prev: current stays at center + fades out, target slides in from left/top + fades in
+    target.style.transition = 'none';
+    target.style.transform = axis === 'X' ? 'translateX(-100%)' : 'translateY(-100%)';
+    target.style.opacity = '0';
+    target.classList.add('active');
 
-  target.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-  target.style.transform = 'translate(0, 0)';
-  target.style.opacity = '1';
+    void target.offsetWidth;
+
+    current.style.transition = 'opacity 0.5s ease';
+    current.style.transform = 'translate(0, 0)';
+    current.style.opacity = '0';
+
+    target.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    target.style.transform = 'translate(0, 0)';
+    target.style.opacity = '1';
+  }
 
   function onDone() {
     current.classList.remove('active');
