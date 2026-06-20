@@ -54,7 +54,6 @@ html, body {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
   border: none;
-  font-size: 32px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -125,6 +124,11 @@ html, body {
   .arrow-top,
   .arrow-bottom {
     display: flex;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .slide {
+    padding: 32px 20px;
   }
 }
 
@@ -132,6 +136,5 @@ html, body {
   .arrow {
     width: 56px;
     height: 56px;
-    font-size: 28px;
   }
 }
