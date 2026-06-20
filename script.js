@@ -141,13 +141,11 @@ const arrows = [arrowLeft, arrowRight, arrowTop, arrowBottom];
 let arrowTimer = null;
 
 function showArrows() {
-  if (isHorizontal()) {
-    arrows.forEach(a => a.classList.add('show'));
-    clearTimeout(arrowTimer);
-    arrowTimer = setTimeout(() => {
-      arrows.forEach(a => a.classList.remove('show'));
-    }, 3000);
-  }
+  arrows.forEach(a => a.classList.add('show'));
+  clearTimeout(arrowTimer);
+  arrowTimer = setTimeout(function () {
+    arrows.forEach(a => a.classList.remove('show'));
+  }, 3000);
 }
 
 arrowLeft.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex - 1); showArrows(); });
@@ -156,3 +154,6 @@ arrowTop.addEventListener('click', function (e) { e.stopPropagation(); goTo(curr
 arrowBottom.addEventListener('click', function (e) { e.stopPropagation(); goTo(currentIndex + 1); showArrows(); });
 
 gallery.addEventListener('mousemove', showArrows);
+gallery.addEventListener('touchstart', showArrows, { passive: true });
+
+showArrows();

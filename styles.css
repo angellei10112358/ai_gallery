@@ -124,8 +124,6 @@ html, body {
   .arrow-top,
   .arrow-bottom {
     display: flex;
-    opacity: 1;
-    pointer-events: auto;
   }
   .slide {
     padding: 32px 20px;
